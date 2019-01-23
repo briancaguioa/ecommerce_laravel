@@ -20,6 +20,9 @@
 
 	<hr>
 		<a href="/menu/add" class="btn btn-primary mb-2"><i class="fas fa-plus"></i> Add new item</a>
+		@if(Session::has("success_message"))
+			<div class="alert alert-success">{{ Session::get("success_message") }}</div>
+		@endif
 
 		<div class="row">
 
