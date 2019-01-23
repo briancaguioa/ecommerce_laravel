@@ -12,7 +12,7 @@
 		<div class="row">
 			@if(count($errors) > 0)
 				@foreach($errors->all() as $error)
-				<p>{{ $error }}</p>
+				<div class="text-danger">{{ $error }}</div>
 				@endforeach
 			@endif
 		</div>
@@ -52,7 +52,7 @@
 
 					<div class="form-group">
 	 					<label for="image">Upload Image</label>
-	 					<input id="image" type="file" name="image" class="form-control-file" required>
+	 					<input id="image" type="file" name="image" class="form-control-file">
 	 				</div>
 
 	 				<button type="submit" class="btn bg-primary" ><i class="fas fa-plus"></i> Add new Item</button>
