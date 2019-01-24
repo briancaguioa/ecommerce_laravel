@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<title>Document</title>
 
+	{{-- fontawesome --}}
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
@@ -36,8 +37,19 @@
 							<p>{{ $indiv_item->description }}</p>
 							<p>{{ $indiv_item->category_id }}</p>
 							
-							<a href="/menu/{{ $indiv_item->id }}" class="btn vtb-block btn-primary">{{ $indiv_item->name }}</a>
+
+							<form action="addToCart/{{$indiv_item->id}}" method="POST">
+								{{csrf_field()}}
+								<div class="form-group">
+									<label for="quantity">Quantity:</label>
+									<input type="number" name="quantity" id="quantity" class="form-control mb-2">
+									<button type="submit" class="btn btn-outline-success add-to-cart mb-3 " data-id=""><i class="fas fa-cart-plus"></i> Add to cart</button>
+								</div>
+							</form>
+						<a href="/menu/{{ $indiv_item->id }}" class="btn btn-block bg-primary text-white"><i class="fas fa-eye"></i> View Details</a>
 						</div>
+
+						
 					</div>
 				</div>
 			@endforeach

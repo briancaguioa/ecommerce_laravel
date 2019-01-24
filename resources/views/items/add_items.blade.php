@@ -55,7 +55,7 @@
 	 					<input id="image" type="file" name="image" class="form-control-file">
 	 				</div>
 
-	 				<button type="submit" class="btn bg-primary" ><i class="fas fa-plus"></i> Add new Item</button>
+	 				<button type="submit" class="btn bg-primary text-white" ><i class="fas fa-plus"></i> Add new Item</button>
 
 				</form>
 			</div>
