@@ -16,29 +16,24 @@ Route::get('/', function () {
 });
 
 
-Route::get('/catalog', "ItemController@showItems");
+Route::get('/catalog', "ItemController@showItems");                        //showItems 
+Route::get('/menu/mycart', "ItemController@showCart");                     //showCart 
+Route::get('/menu/mycart/{id}/delete', "ItemController@deleteCart");       //deleteCart 
+Route::get('/menu/clearcart', "ItemController@clearCart");                 //clearCart 
+Route::patch('/menu/mycart/{id}/changeQty', "ItemController@updateCart");  //updateCart 
+Route::post('/addToCart/{id}',"ItemController@addToCart");                 //addToCart 
 
-Route::get('/menu/mycart', "ItemController@showCart");
-
-Route::get('/menu/mycart/{id}/delete', "ItemController@deleteCart");
-
-Route::get('/menu/clearcart', "ItemController@clearCart");
-
-Route::patch('/menu/mycart/{id}/changeQty', "ItemController@updateCart");
-
-Route::get('/menu/add', "ItemController@showAddItemForm");
-
-Route::post("/menu/add", "ItemController@saveItems");
-
-Route::get('/menu/{id}', "ItemController@showDetails");
-
-Route::delete('/menu/{id}/delete', "ItemController@deleteItem");
-
-Route::get('/menu/{id}/edit', "ItemController@showEditForm");
-
-Route::patch('/menu/{id}/edit', "ItemController@editItem");
-
-Route::post('/addToCart/{id}',"ItemController@addToCart");
+	
+Route::middleware("auth")->group(function() {
+	Route::get('/menu/add', "ItemController@showAddItemForm");              //showItems
+	Route::post("/menu/add", "ItemController@saveItems");                   //showCart
+	Route::get('/menu/{id}', "ItemController@itemDetails");                 //deleteCart
+	Route::delete('/menu/{id}/delete', "ItemController@deleteItem");        //clearCart
+	Route::get('/menu/{id}/edit', "ItemController@showEditForm");           //updateCart
+	Route::patch('/menu/{id}/edit', "ItemController@editItem");             //addToCart
+});
 
 
-
+// php artisan:make auth=
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');

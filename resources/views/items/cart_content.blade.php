@@ -1,3 +1,5 @@
+@section('title', 'mycart')
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +47,7 @@
 							<td>{{$item->price}}</td>
 							<td>{{$item->subtotal}}</td>
 							<td>
-								<button class="btn btn-danger" data-toggle="modal" data-target="#confirmDelete">Remove from Cart</button>
+								<button class="btn btn-danger" data-toggle="modal" data-target="#confirmDelete"><i class="far fa-trash-alt"></i> Remove from Cart</button>
 								<div class="modal fade" id="confirmDelete" role="dialog">
 									<div class="modal-dialog">
 										<div class="modal-content">
@@ -80,8 +82,9 @@
 			@else
 				<h4>Your cart is empty</h4>
 			@endif
+			<div>
 				<a href="/catalog" class="btn btn-primary"><i class="fas fa-chevron-left"></i> Go back to shopping</a>
-
+			</div>
 		</div> 
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>

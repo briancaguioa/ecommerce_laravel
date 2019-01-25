@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Ecommerce\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Item;
-use App\Category;
+use Ecommerce\Item;
+use Ecommerce\Category;
 use Session;
 
 
@@ -16,7 +16,7 @@ class ItemController extends Controller
     	return view("items.catalog", compact(['categories', 'items'])); 
     }
 
-     public function showDetails($id) {
+     public function itemDetails($id) {
     	// $items = Item::where('id',$item_id)->first();
     	$item = Item::find($id);
 

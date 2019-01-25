@@ -1,3 +1,9 @@
+@extends('layouts.app')
+
+@section('title', 'Catalog')
+
+@section('content')
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +37,7 @@
 				<div class="col-sm-4">
 					<div class="card mb-3">
 						<div class="card-body">
-							<h5 class="card-title">{{ $indiv_item->name }}</h5>
+							<h5 class="card-title ">{{ $indiv_item->name }}</h5>
 							<img src="{{ $indiv_item->image_path }}">
 
 							<p>{{ $indiv_item->description }}</p>
@@ -46,7 +52,7 @@
 									<button type="submit" class="btn btn-outline-success add-to-cart mb-3 " data-id=""><i class="fas fa-cart-plus"></i> Add to cart</button>
 								</div>
 							</form>
-						<a href="/menu/{{ $indiv_item->id }}" class="btn btn-block bg-primary text-white"><i class="fas fa-eye"></i> View Details</a>
+						<a href="/menu/{{ $indiv_item->id }}" class="btn btn-block bg-primary text-white"> View Details <i class="fas fa-eye"></i></a>
 						</div>
 
 						
@@ -59,3 +65,4 @@
 
 </body>
 </html>
+@endsection
