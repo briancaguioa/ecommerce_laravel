@@ -15,8 +15,8 @@ class AddItemidOrdeidQuantityItemOrder extends Migration
     {
         Schema::table('item_order', function (Blueprint $table) {
           $table->integer("quatity");
-            $table->unsignedInteger("item_id")->nullable();
-            $table->unsignedInteger("order_id")->nullable();
+            $table->unsignedInteger("item_id");
+            $table->unsignedInteger("order_id");
 
             //foreign keys
             $table->foreign('item_id')

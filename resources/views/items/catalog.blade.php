@@ -21,8 +21,8 @@
 	<h1>Catalog Page</h1>
 	<h2>Categories</h2>
 	<a href="#" class="btn btn-primary">All</a>
-	@foreach($categories as $category)
-		<a href="/menu" class="btn btn-primary">{{ $category->name }}</a>
+	@foreach(\App\Category::all() as $category)
+		<a href="/menu/categories/{{$category->id}}" class="btn btn-primary">{{ $category->name }}</a>
 	@endforeach
 
 	<hr>
@@ -38,7 +38,7 @@
 					<div class="card mb-3">
 						<div class="card-body">
 							<h5 class="card-title ">{{ $indiv_item->name }}</h5>
-							<img src="{{ $indiv_item->image_path }}">
+							<img src="/{{ $indiv_item->image_path }}">
 
 							<p>{{ $indiv_item->description }}</p>
 							<p>{{ $indiv_item->category_id }}</p>

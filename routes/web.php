@@ -21,7 +21,8 @@ Route::get('/menu/mycart', "ItemController@showCart");                     //sho
 Route::get('/menu/mycart/{id}/delete', "ItemController@deleteCart");       //deleteCart 
 Route::get('/menu/clearcart', "ItemController@clearCart");                 //clearCart 
 Route::patch('/menu/mycart/{id}/changeQty', "ItemController@updateCart");  //updateCart 
-Route::post('/addToCart/{id}',"ItemController@addToCart");                 //addToCart 
+Route::post('/addToCart/{id}',"ItemController@addToCart");           		//addToCart
+Route::get("menu/categories/{id}", "CategoryController@findItems");              
 
 	
 Route::middleware("auth")->group(function() {

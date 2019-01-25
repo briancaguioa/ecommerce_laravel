@@ -1,10 +1,10 @@
 <?php
 
-namespace Ecommerce\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Ecommerce\Item;
-use Ecommerce\Category;
+use App\Item;
+use App\Category;
 use Session;
 
 
