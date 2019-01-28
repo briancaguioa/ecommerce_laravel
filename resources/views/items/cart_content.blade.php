@@ -76,7 +76,7 @@
 						</tr>
 				</tbody>
 			</table>
-			
+				<a href="/checkout" class="btn btn-success mb-3"><i class="fas fa-cash-register"></i> Checkout</a>
 				<a href="/menu/clearcart" class="btn btn-outline-danger mb-3"><i class="far fa-trash-alt"></i> Clear Cart</a>
 
 			@else

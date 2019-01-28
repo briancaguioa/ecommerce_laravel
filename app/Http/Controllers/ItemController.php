@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Item;
+use App\Order;
 use App\Category;
+use Auth;
 use Session;
 
 
@@ -168,4 +170,56 @@ class ItemController extends Controller
         return redirect("/menu/mycart");
     }
 
+    public function checkout() {
+        $order = new Order;
+        //we need to make sure that the user thats trying to check out is logged in. else we would encounter an error with Auth::user
+        $order->user_id = Auth::user()->id;
+        $order->total=0;
+        $order->status_id=1; //all orders should have a default status pending
+        //creat a new order
+        $order->save();
+
+
+
+        //link items to the order 
+        $total=0;
+        foreach(Session::get('cart') as $item_id => $quantity) {
+            // dd(Session::get('cart'));
+
+
+            //items()->attach() is a function that allows us to insert the irem to the item_order table for that specific order_id along with any other columns that we want to include, in this case the quantity
+
+            $order->items()->attach($item_id, ['quantity'=>$quantity]);
+            //syntax attach(yung other fk,[other columns we want to includ in the associative array])
+
+            //update order total
+            $item = Item::find($item_id);
+            $total += $item->price * $quantity;
+        }
+
+        //save the total to the current order
+        $order->total = $total;
+        $order->save();
+
+        //remove the surrent session cart and return to catalog
+        Session::forget('cart');
+        //return redirect("/catalog");
+    }
+
+    public function showOrders() {
+        //SELLECT * FROM orders WHERE user_id = the of the surrent user
+        //->get(), runs the get query
+
+
+        $orders=Order::where("orders.user_id", Auth::user()->id)->get();
+        // $item_order = Item_Order::all();
+        return view("items.order_details", compact("orders")); 
+    }
+
+    public function restoreItem($id) {
+        $item = Item::withTrashed()->find($id);
+        //we need to use withTreashed to include "soft-deleted" item in the query
+        $item->restore();
+        return redirect("/catalog");
+    }
 }

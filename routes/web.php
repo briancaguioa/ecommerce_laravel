@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 /*
 |--------------------------------------------------------------------------
@@ -32,9 +32,12 @@ Route::middleware("auth")->group(function() {
 	Route::delete('/menu/{id}/delete', "ItemController@deleteItem");        //clearCart
 	Route::get('/menu/{id}/edit', "ItemController@showEditForm");           //updateCart
 	Route::patch('/menu/{id}/edit', "ItemController@editItem");             //addToCart
+	Route::get("/checkout", "ItemController@checkout");
+	Route::get("/orders", "ItemController@showOrders");                      //checkout
+	Route::get("/restoreItem/{id}", "ItemController@restoreItem");
 });
 
 
-// php artisan:make auth=
+// php artisan make: auth
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

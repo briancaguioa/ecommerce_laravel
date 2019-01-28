@@ -44,14 +44,19 @@
 							<p>{{ $indiv_item->category_id }}</p>
 							
 
-							<form action="addToCart/{{$indiv_item->id}}" method="POST">
+							{{-- <form action="addToCart/{{$indiv_item->id}}" method="POST">
 								{{csrf_field()}}
 								<div class="form-group">
 									<label for="quantity">Quantity:</label>
 									<input type="number" name="quantity" id="quantity" class="form-control mb-2">
 									<button type="submit" class="btn btn-outline-success add-to-cart mb-3 " data-id=""><i class="fas fa-cart-plus"></i> Add to cart</button>
 								</div>
-							</form>
+							</form> --}}
+
+							<input type="number" name="quantity" id="quantity_{{$indiv_item->id}}" class="form-control">
+
+							<button type="button" class="btn btn-block btn-outline-success" onclick="addToCart({{$indiv_item->id}})">Add to Cart</button>
+
 						<a href="/menu/{{ $indiv_item->id }}" class="btn btn-block bg-primary text-white"> View Details <i class="fas fa-eye"></i></a>
 						</div>
 
@@ -62,6 +67,30 @@
 		</div>
 
 	</div>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+	<script>
+		function addToCart(id) {
+			let quantity = $("#quantity_"+id).val();
+			// console.log("Item Ordered: " + id + " Quantity Order: " + quantity);
+			$.ajax({
+				"url" : "/addToCart/"+id,
+				"type" : "POST",
+				"data" : {
+					'_token': "{{csrf_token()}}",
+					'quantity' : quantity
+				},
+				"success": function(data) {
+					alert("Current number of item in the cart is: " + quantity);
+				}
+			})
+
+
+		}
+	</script>
 
 </body>
 </html>
